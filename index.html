@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro Timer</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/bootstrap4/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../CSS/FortAwesome-Font-Awesome-fcec2d1/css/all.css">
+</head>
+<body onload="template()">
+
+	<div class="container">
+		<!-- HEADING -->
+		<h1 class="text-center mt-5 mb-4 head">POMODORO APP</h1>
+
+		<!-- MAIN TIMER -->
+		<div class="container timer">
+			<div class="row">
+				<div class="col-5">
+					<h4 id="minutes">Minutes</h4>
+				</div>
+
+				<div class="col-2">
+					<h4>:</h4>
+				</div>
+
+				<div class="col-5">
+					<h4 id="seconds">Seconds</h4>
+				</div>
+			</div>
+		</div>
+
+		<!-- RESET BUTTON -->
+		<div class="container control">
+			<button class="btn bg-dark" onclick="start()"><i class="fas fa-play" style="color: #fff"></i></button>
+			<a href="./index.html"><i class="fas fa-redo-alt"></i></a>
+		</div>
+
+		<!-- SESSION ENDED MESSAGE -->
+		<div>
+			<h1 id="done"></h1>
+		</div>
+	</div>
+
+
+<script type="text/javascript" src="../JS/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="../JS/popper.js"></script>
+<script type="text/javascript" src="../JS/bootstrap.min.js"></script>
+<!-- <script type="text/javascript" src="../CSS/FortAwesome-Font-Awesome-fcec2d1/js/all.js"></script> -->
+<script type="text/javascript">
+	//	DECLARING VARIABLES
+var minutes = 25;
+var seconds = "0 0";
+
+// INTERACTIVE SOUNDS
+var click = new Audio("click.mp3");
+var bell = new Audio("bell.mp3")
+
+// GETS THE MINUTE SND SECONDS ID IN THE HTML FILE AND ASSIGNS THE CORRESPONDING VARIABLE TO IT. 
+function template(){
+  	document.getElementById("minutes").innerHTML = minutes
+	document.getElementById("seconds").innerHTML = seconds
+}
+function start(){
+  click.play();
+  minutes = 24;
+  seconds = 59
+  
+  var minutes_interval = setInterval(minutesTimer, 60000);
+  var seconds_interval = setInterval(secondsTimer, 1000);
+  
+  	document.getElementById("minutes").innerHTML = minutes
+	document.getElementById("seconds").innerHTML = seconds
+  
+  function minutesTimer(){
+    minutes = minutes-1
+    document.getElementById("minutes").innerHTML = minutes
+  }
+  function secondsTimer(){
+    seconds = seconds-1
+    document.getElementById("seconds").innerHTML = seconds;
+    
+    if(seconds <= 0){
+      if(minutes <= 0){
+        clearInterval(minutes_interval)
+        clearInterval(seconds_interval)
+        
+        document.getElementById("done").innerHTML = `Session completed, Take a <span>break!</span>`;
+        bell.play()
+      }
+      seconds = 60
+    }
+  }
+}
+
+</script>
+</body>
+</html>
