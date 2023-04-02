@@ -54,10 +54,16 @@
 	//	DECLARING VARIABLES
 let minutes = 25;
 let seconds = "0 0";
+let minutes_interval;
+let seconds_interval;
 
 // INTERACTIVE SOUNDS
 const click = new Audio("click.mp3");
-const bell = new Audio("bell.mp3")
+const bell = new Audio("bell.mp3");
+
+// 
+let minutes_interval;
+let seconds_interval;
 
 // GETS THE MINUTE SND SECONDS ID IN THE HTML FILE AND ASSIGNS THE CORRESPONDING VARIABLE TO IT. 
 function template(){
@@ -69,8 +75,8 @@ function start(){
   minutes = 24;
   seconds = 59
   
-  var minutes_interval = setInterval(minutesTimer, 60000);
-  var seconds_interval = setInterval(secondsTimer, 1000);
+  minutes_interval = setInterval(minutesTimer, 60000);
+  seconds_interval = setInterval(secondsTimer, 1000);
   
   	document.getElementById("minutes").innerHTML = minutes
 	document.getElementById("seconds").innerHTML = seconds
@@ -94,6 +100,10 @@ function start(){
       seconds = 60
     }
   }
+}
+
+function reset(){
+	
 }
 
 </script>
