@@ -35,7 +35,7 @@
 		<!-- RESET BUTTON -->
 		<div class="container control">
 			<button class="btn bg-dark" onclick="start()"><i class="fas fa-play" style="color: #fff"></i></button>
-			<a href="./index.html"><i class="fas fa-redo-alt"></i></a>
+			<a href="#" onclick="reset(this)"><i class="fas fa-redo-alt"></i></a>
 		</div>
 
 		<!-- SESSION ENDED MESSAGE -->
@@ -99,13 +99,14 @@ function start(){
   }
 }
 
-function reset(){
-	let minutes = 25;
+function reset(e){
+	console.log(e)
+	/* let minutes = 25;
 	let seconds = "0 0";
 	
 	// CLEAR ALL INTERVALS
 	clearInterval(minutes_interval)
-        clearInterval(seconds_interval)
+        clearInterval(seconds_interval) */
 }
 
 </script>
